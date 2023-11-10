@@ -1,0 +1,30 @@
+.gamePage{
+    background-color: green;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.gameSection{
+    background-color: goldenrod;
+    height: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 2.5%;
+    width: 87.5%;
+}
+.gameSection > iframe {
+    width: 100%;
+    height: 100%;
+}
+.adSection{
+    background-color: lightgreen;
+    height: 100%;
+    flex:1;
+}
