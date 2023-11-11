@@ -36,18 +36,19 @@ function HomePage() {
          } 
     },[allGames])
 
-    if(games){
+
     return ( 
 
         <div className={styles.homePage}>
 
             <section className={styles.gamesSection}>
-
+                {games ? 
                 <div>
                     {Object.entries(games).map(([key, value]) => {
                         return <GameCard key={key} name={key} value={value}/>
                     })}
                 </div>
+                : 'Loading'}
 
             </section>
 
@@ -58,11 +59,7 @@ function HomePage() {
         </div>
 
     );
-    }else{
-        return(
-            <h1>Loading</h1>
-        )
-    }
+
 }
 
 export default HomePage;
