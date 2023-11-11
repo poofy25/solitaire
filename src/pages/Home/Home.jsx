@@ -43,15 +43,17 @@ function HomePage() {
 
             <section className={styles.gamesSection}>
 
-                {Object.entries(games).map(([key, value]) => {
-                    return <GameCard key={key} name={key} value={value}/>
-                })}
-
-
+                <div>
+                    {Object.entries(games).map(([key, value]) => {
+                        return <GameCard key={key} name={key} value={value}/>
+                    })}
+                </div>
 
             </section>
 
-            <section className={styles.adSection}>AD SECTION</section>
+            <section className={styles.adSection}>
+              <iframe width='100%' height='100%'/>
+            </section>
             
         </div>
 

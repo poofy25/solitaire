@@ -6,7 +6,6 @@ function GameCard(props) {
     const name = props.name
     const data = props.value
     const navigateTo = useNavigate()
-    console.log(data)
     if(data){
     return ( 
 
