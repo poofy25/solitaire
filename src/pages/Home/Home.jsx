@@ -24,6 +24,7 @@ function HomePage() {
             });
             setAllGames(localGames)
         }
+ 
         getGameDocuments()
        
     },[])
@@ -36,10 +37,26 @@ function HomePage() {
          } 
     },[allGames])
 
+    
 
     return ( 
 
         <div className={styles.homePage}>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <section className={styles.gamesSection}>
                 {games ? 
@@ -53,8 +70,7 @@ function HomePage() {
             </section>
 
             <section className={styles.adSection}>
-               {console.log(window.innerWidth)}
-
+              
                {window.innerWidth >='961' ? 
                <>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3203316538062198"
