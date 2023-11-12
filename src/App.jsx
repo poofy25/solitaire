@@ -25,7 +25,10 @@ function App() {
         adBlockEnabled = true
         
       } finally {
-        console.log(`AdBlock Enabled: ${adBlockEnabled}`)
+        console.log(`AdBlock Enabled: ${adBlockEnabled}` , window.areAdsRunning === undefined)
+      }
+      if(window.areAdsRunning == undefined){
+        adBlockEnabled = true
       }
       setAreAdsRunning(adBlockEnabled)
 
