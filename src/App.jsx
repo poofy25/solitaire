@@ -6,6 +6,7 @@ import HomePage from './pages/Home/Home'
 import ContactPage from './pages/Contact/Contact'
 import GamePage from './pages/Game/Game'
 import AdBlockPopUp from './components/AdBlockPopup/AdBlockPopup'
+import PrivacyPolicyPage from './pages/Privacy-Policy/Privacy-Policy'
 import NavigationBar from './components/Navbar/Navbar'
 import { Suspense, useEffect, useState } from 'react'
 
@@ -45,6 +46,7 @@ console.log(areAdsRunning)
   <Route path="/home" element={<Suspense fallback={'Loading...'}><HomePage /></Suspense>}/>
   <Route path="/contact" element={<Suspense fallback={'Loading...'}><ContactPage /></Suspense>} />
   <Route path="/game/:id" element={<Suspense fallback={'Loading...'}><GamePage /></Suspense>} />
+  <Route path="/privacy-policy" element={<Suspense fallback={'Loading...'}><PrivacyPolicyPage /></Suspense>} />
 </Routes>
 
 </BrowserRouter>
