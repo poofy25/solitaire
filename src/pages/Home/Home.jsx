@@ -5,19 +5,23 @@ import { collection , getDocs } from "firebase/firestore";
 import { db } from '../../firebase/firebase';
 import { useEffect  , useState} from 'react';
 import GameCard from '../../components/GameCard/GameCard';
-
+import NavigationBar from '../../components/Navbar/Navbar';
 function HomePage() {
 
     const [allGames , setAllGames] = useState(null)
-    const [language , setLanguage] = useState('en')
+    let language = navigator.language || navigator.userLanguage
+    if(language === 'en-US')language = 'en'
     const [games, setGames] = useState(null)
+
+    
 
 
     //Fetching Games
     useEffect(()=>{
-
+        if(!localStorage.getItem('games')){
         let localGames = {}
         async function getGameDocuments(){
+            console.log('fetching games')
             const querySnapshot = await getDocs(collection(db, "games"));
             querySnapshot.forEach((doc) => {
             localGames = {...localGames , [doc.id]:doc.data()}
@@ -26,13 +30,15 @@ function HomePage() {
         }
  
         getGameDocuments()
+        }else{
+            setAllGames(JSON.parse(localStorage.getItem('games')))
+        }
        
     },[])
 
     //Setting current games based on the selected language
     useEffect(()=>{
         if(allGames){ 
-            sessionStorage.setItem('games', JSON.stringify(allGames[language]))
             setGames(allGames[language])
          } 
     },[allGames])
@@ -40,7 +46,8 @@ function HomePage() {
     
 
     return ( 
-
+        <>
+<NavigationBar/>
         <div className={styles.homePage}>
 
 
@@ -108,7 +115,7 @@ function HomePage() {
             </section>
             
         </div>
-
+        </>
     );
 
 }

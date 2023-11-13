@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom';
 function GamePage() {
 
 const params = useParams()
-const currentGameData = JSON.parse(sessionStorage.getItem("games"))[params.id]
+let language = navigator.language || navigator.userLanguage
+if(language === 'en-US')language = 'en'
+
+const currentGameData = JSON.parse(localStorage.getItem("games"))[language][params.id]
 console.log('Loading URL: ' , currentGameData.url)
     if(true){
     return ( 

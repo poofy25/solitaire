@@ -25,10 +25,10 @@ function App() {
         adBlockEnabled = true
         
       } finally {
-        console.log(`AdBlock Enabled: ${adBlockEnabled}` , window.areAdsRunning === undefined)
+        console.log(`AdBlock Enabled: ${adBlockEnabled}` , window.areAdsRunning   , window.areAdsRunning1)
       }
       if(window.areAdsRunning == undefined){
-        adBlockEnabled = true
+       // adBlockEnabled = true
       }
       setAreAdsRunning(adBlockEnabled)
 
@@ -43,7 +43,7 @@ console.log(areAdsRunning)
     <>
       <AdBlockPopUp areAdsRunning={areAdsRunning} setAreAdsRunning={setAreAdsRunning}/>
 <BrowserRouter>
-<NavigationBar/>
+
 <Routes>
   <Route path="/" element={<Suspense fallback={'Loading...'}><HomePage /></Suspense>} />
   <Route path="/home" element={<Suspense fallback={'Loading...'}><HomePage /></Suspense>}/>

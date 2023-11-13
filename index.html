@@ -8,48 +8,16 @@
     <title>Vite + React</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3203316538062198"
      crossorigin="anonymous"></script>
-     <script src="ads-prebid.js"></script>
+     <script  type="module" src="./ads-prebid.js"></script>
+     <script  type="module" src="./ads/ads-prebid1.js"></script>
   </head>
   <body>
  
     <div id="root">
 
 
-    
-
-
-
-
-
-
-
-
-
-
     </div>
-    <script>
-      // console.log(window.areAdsRunning)
-      // if( window.areAdsRunning === undefined ){
-      //   // adblocker detected, show fallback
-      //   console.log('Ad blocker detected')
-      // }
-
-
-      async function detectAdBlock() {
-      let adBlockEnabled = false
-      const googleAdUrl = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
-      try {
-        await fetch(new Request(googleAdUrl)).catch(_ => adBlockEnabled = true)
-      } catch (e) {
-        adBlockEnabled = true
-      } finally {
-        console.log(`AdBlock Enabled: ${adBlockEnabled}`)
-      }
-    }
-    detectAdBlock()
-
-
-    </script>
+   
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

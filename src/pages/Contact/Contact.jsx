@@ -1,5 +1,8 @@
 import styles from './contact.module.css'
 import emailjs from '@emailjs/browser';
+
+import NavigationBar from '../../components/Navbar/Navbar';
+
 function ContactPage() {
 
 
@@ -32,7 +35,8 @@ function ContactPage() {
 
 
     return ( 
-
+        <>
+    <NavigationBar/>
     <div className={styles.contactPage}>
         <h1>CONTACT US </h1>
         <form onSubmit={(e)=>{onSubmit(e)}}>
@@ -54,7 +58,7 @@ function ContactPage() {
 
 
     </div>
-
+    </>
      );
 }
 

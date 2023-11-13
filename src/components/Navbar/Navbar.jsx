@@ -9,7 +9,7 @@ function NavigationBar() {
     return ( 
 
         <nav>
-            <button onClick={()=>{navigateTo('')}}>Games</button>
+            <button onClick={()=>{navigateTo('/')}}>Games</button>
             <button onClick={()=>{navigateTo('/contact')}}>Contact Us</button>
         </nav>
 

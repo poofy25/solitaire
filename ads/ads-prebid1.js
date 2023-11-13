@@ -1,0 +1,1 @@
+var areAdsRunning1 = true;

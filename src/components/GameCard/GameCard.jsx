@@ -9,9 +9,10 @@ function GameCard(props) {
     if(data){
     return ( 
 
-        <button className={styles.gameCard} onClick={()=>{navigateTo(`/game/${name}`)}}>
+        <a className={styles.gameCard} href={`/game/${name}`} target='_blank'>
            <img src={data.logo}/>
-        </button>
+           <p>{data.name}</p>
+        </a>
 
      );
     }
