@@ -20,6 +20,7 @@
 .gameSection > iframe {
     width: 100%;
     height: 100%;
+    border: none;
 }
 .adSection{
     background-color: lightgreen;

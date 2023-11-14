@@ -1,15 +1,33 @@
+import { useEffect } from 'react';
 import styles from './game.module.css'
 
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 function GamePage() {
 
 const params = useParams()
-let language = navigator.language || navigator.userLanguage
-if(language === 'en-US')language = 'en'
-
+const navigateTo = useNavigate()
+let language = navigator.language || navigator.userLanguage || 'en'
+console.log(language)
+if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
+if(!localStorage.getItem('games'))navigateTo('/')
 const currentGameData = JSON.parse(localStorage.getItem("games"))[language][params.id]
 console.log('Loading URL: ' , currentGameData.url)
+
+
+
+useEffect(()=>{
+
+    document.title = currentGameData.name
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+    }
+    link.href = currentGameData.logo;
+},[])
+
     if(true){
     return ( 
 

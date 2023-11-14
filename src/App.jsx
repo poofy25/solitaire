@@ -9,32 +9,18 @@ import AdBlockPopUp from './components/AdBlockPopup/AdBlockPopup'
 import PrivacyPolicyPage from './pages/Privacy-Policy/Privacy-Policy'
 import NavigationBar from './components/Navbar/Navbar'
 import { Suspense, useEffect, useState } from 'react'
+import { useDetectAdBlock } from "adblock-detect-react";
 
 function App() {
 
   const[areAdsRunning , setAreAdsRunning] = useState(null)
+  const detectedAdBlock = useDetectAdBlock()
+  console.log(detectedAdBlock)
 
   useEffect(()=>{
 
-    async function detectAdBlock() {
-      let adBlockEnabled = false
-      const googleAdUrl = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
-      try {
-        await fetch(new Request(googleAdUrl)).catch(_ => adBlockEnabled = true)
-      } catch (e) {
-        adBlockEnabled = true
-        
-      } finally {
-        console.log(`AdBlock Enabled: ${adBlockEnabled}` , window.areAdsRunning   , window.areAdsRunning1)
-      }
-      if(window.areAdsRunning == undefined){
-       // adBlockEnabled = true
-      }
-      setAreAdsRunning(adBlockEnabled)
-
-
-    }
-    detectAdBlock()
+  if(detectedAdBlock)setAreAdsRunning('true')
+  if(!detectedAdBlock)setAreAdsRunning('false')
 
   },[])
 console.log(areAdsRunning)
