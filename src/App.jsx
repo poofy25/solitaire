@@ -13,21 +13,10 @@ import { useDetectAdBlock } from "adblock-detect-react";
 
 function App() {
 
-  const[areAdsRunning , setAreAdsRunning] = useState(null)
-  const detectedAdBlock = useDetectAdBlock()
-  console.log(detectedAdBlock)
-
-  useEffect(()=>{
-
-  if(detectedAdBlock)setAreAdsRunning('true')
-  if(!detectedAdBlock)setAreAdsRunning('false')
-
-  },[])
-console.log(areAdsRunning)
 
   return (
     <>
-      <AdBlockPopUp areAdsRunning={areAdsRunning} setAreAdsRunning={setAreAdsRunning}/>
+      
 <BrowserRouter>
 
 <Routes>

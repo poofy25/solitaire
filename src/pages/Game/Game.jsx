@@ -3,6 +3,11 @@ import styles from './game.module.css'
 
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+import AdBlockPopUp from '../../components/AdBlockPopup/AdBlockPopup';
+import { useDetectAdBlock } from 'adblock-detect-react';
+import { useState } from 'react';
+
 function GamePage() {
 
 const params = useParams()
@@ -12,7 +17,19 @@ console.log(language)
 if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
 if(!localStorage.getItem('games'))navigateTo('/')
 const currentGameData = JSON.parse(localStorage.getItem("games"))[language][params.id]
-console.log('Loading URL: ' , currentGameData.url)
+
+
+
+const[areAdsRunning , setAreAdsRunning] = useState(null)
+const detectedAdBlock = useDetectAdBlock()
+console.log(detectedAdBlock)
+
+useEffect(()=>{
+console.log(detectedAdBlock)
+if(detectedAdBlock)setAreAdsRunning(true)
+if(!detectedAdBlock)setAreAdsRunning(false)
+
+},[])
 
 
 
@@ -30,7 +47,8 @@ useEffect(()=>{
 
     if(true){
     return ( 
-
+        <>
+<AdBlockPopUp/>
         <div className={styles.gamePage}>
 
             <section className={styles.gameSection}>
@@ -76,7 +94,7 @@ useEffect(()=>{
             </section>
             
         </div>
-
+        </>
     );
     }else{
         return(

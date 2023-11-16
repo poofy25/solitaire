@@ -8,27 +8,17 @@ import GameCard from '../../components/GameCard/GameCard';
 import NavigationBar from '../../components/Navbar/Navbar';
 import { TailSpin } from 'react-loader-spinner';
 function HomePage() {
-    console.log('Home page is loading')
     const [allGames , setAllGames] = useState(null)
     let language = navigator.language || navigator.userLanguage || 'en'
-    console.log('Default Language : ' , language )
     if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
-    console.log('Modified language : ' , language , language.toLowerCase().includes('en'))
     const [games, setGames] = useState(null)
-    
-
-    console.log('All games : ' , allGames)
-    console.log('Language games : ' , games)
-    
 
 
     //Fetching Games
     useEffect(()=>{
-        console.log('Are the games saved ? :' ,JSON.parse(localStorage.getItem('games')) ,!JSON.parse(localStorage.getItem('games')) )
         if(!JSON.parse(sessionStorage.getItem('games'))){
         let localGames = {}
         async function getGameDocuments(){
-            console.log('fetching games')
             const querySnapshot = await getDocs(collection(db, "games"));
             querySnapshot.forEach((doc) => {
             localGames = {...localGames , [doc.id]:doc.data()}

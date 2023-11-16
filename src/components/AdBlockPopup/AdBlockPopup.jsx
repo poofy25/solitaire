@@ -1,13 +1,13 @@
 import styles from './adBlockPopup.module.css'
 import adBlockIcon from '/src/assets/ad-blocker.png'
-
+import { useDetectAdBlock } from 'adblock-detect-react';
 
 function AdBlockPopUp(props) {
 
-    const areAdsRunning = props.areAdsRunning
-     console.log(areAdsRunning)
+    const detectedAdBlock = useDetectAdBlock()
+    console.log(detectedAdBlock)
 
-    if(areAdsRunning){
+    if(detectedAdBlock){
     return ( 
         <div className={styles.adBlock}>
             <div className={styles.content}>
@@ -21,6 +21,10 @@ function AdBlockPopUp(props) {
 
 
      );
+    }else{
+        return (
+            ''
+        )
     }
 }
 
