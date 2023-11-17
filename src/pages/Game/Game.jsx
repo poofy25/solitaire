@@ -15,21 +15,20 @@ const navigateTo = useNavigate()
 let language = navigator.language || navigator.userLanguage || 'en'
 console.log(language)
 if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
-if(!localStorage.getItem('games'))navigateTo('/')
-const currentGameData = JSON.parse(localStorage.getItem("games"))[language][params.id]
+if(!JSON.parse(localStorage.getItem("games")))navigateTo('/')
+const currentGameData = JSON.parse(localStorage.getItem("games"))?.[language]?.[params.id]
 
 
 
 const[areAdsRunning , setAreAdsRunning] = useState(null)
 const detectedAdBlock = useDetectAdBlock()
-console.log(detectedAdBlock)
 
 useEffect(()=>{
 console.log(detectedAdBlock)
 if(detectedAdBlock)setAreAdsRunning(true)
 if(!detectedAdBlock)setAreAdsRunning(false)
 
-},[])
+},[detectedAdBlock])
 
 
 
@@ -48,7 +47,7 @@ useEffect(()=>{
     if(true){
     return ( 
         <>
-<AdBlockPopUp/>
+<AdBlockPopUp setAreAdsRunning={setAreAdsRunning} areAdsRunning={areAdsRunning} />
         <div className={styles.gamePage}>
 
             <section className={styles.gameSection}>

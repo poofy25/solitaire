@@ -7,12 +7,15 @@ import { useEffect  , useState} from 'react';
 import GameCard from '../../components/GameCard/GameCard';
 import NavigationBar from '../../components/Navbar/Navbar';
 import { TailSpin } from 'react-loader-spinner';
+
+import { useDetectAdBlock } from 'adblock-detect-react';
 function HomePage() {
     const [allGames , setAllGames] = useState(null)
     let language = navigator.language || navigator.userLanguage || 'en'
     if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
     const [games, setGames] = useState(null)
-
+    const detectedAdBlock = useDetectAdBlock()
+    console.log(detectedAdBlock)
 
     //Fetching Games
     useEffect(()=>{

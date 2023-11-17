@@ -4,10 +4,11 @@ import { useDetectAdBlock } from 'adblock-detect-react';
 
 function AdBlockPopUp(props) {
 
-    const detectedAdBlock = useDetectAdBlock()
-    console.log(detectedAdBlock)
+    const areAdsRunning = props.areAdsRunning
+    const setAreAdsRunning = props.setAreAdsRunning
+    console.log(areAdsRunning)
 
-    if(detectedAdBlock){
+    if(areAdsRunning){
     return ( 
         <div className={styles.adBlock}>
             <div className={styles.content}>
