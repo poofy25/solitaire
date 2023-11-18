@@ -15,7 +15,7 @@ const navigateTo = useNavigate()
 let language = navigator.language || navigator.userLanguage || 'en'
 console.log(language)
 if(language.toLowerCase().includes('en') || !(language.toLowerCase().includes('ru')) )language = 'en'
-if(!JSON.parse(localStorage.getItem("games")))navigateTo('/')
+
 const currentGameData = JSON.parse(localStorage.getItem("games"))?.[language]?.[params.id]
 
 
@@ -33,15 +33,19 @@ if(!detectedAdBlock)setAreAdsRunning(false)
 
 
 useEffect(()=>{
-
-    document.title = currentGameData.name
-    var link = document.querySelector("link[rel~='icon']");
-    if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.head.appendChild(link);
+    console.log(!JSON.parse(localStorage.getItem("games")))
+    if(!JSON.parse(localStorage.getItem("games"))){
+        navigateTo('/')
+    }else{
+        document.title = currentGameData?.name
+        var link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+        }
+        link.href = currentGameData?.logo;
     }
-    link.href = currentGameData.logo;
 },[])
 
     if(true){
@@ -51,7 +55,7 @@ useEffect(()=>{
         <div className={styles.gamePage}>
 
             <section className={styles.gameSection}>
-                <iframe src={currentGameData.url}/>
+                <iframe src={currentGameData?.url}/>
             </section>
 
             <section className={styles.adSection}>
