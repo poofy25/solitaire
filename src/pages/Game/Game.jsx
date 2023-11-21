@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import styles from './game.module.css'
 
+import { collection , getDocs } from "firebase/firestore";
+import { db } from '../../firebase/firebase';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,9 +35,39 @@ if(!detectedAdBlock)setAreAdsRunning(false)
 
 
 useEffect(()=>{
-    console.log(!JSON.parse(localStorage.getItem("games")))
+    
     if(!JSON.parse(localStorage.getItem("games"))){
-        navigateTo('/')
+        console.log('Fetching games')
+
+
+        let localGames = {}
+        async function getGameDocuments(){
+            const querySnapshot = await getDocs(collection(db, "games"));
+            querySnapshot.forEach((doc) => {
+            localGames = {...localGames , [doc.id]:doc.data()}
+            });
+            sessionStorage.setItem('games', JSON.stringify(localGames))
+            localStorage.setItem('games', JSON.stringify(localGames))
+            console.log(window.location.href)
+            navigateTo(`/game/${JSON.parse(localStorage.getItem("games"))?.[language]?.[params.id]?.name}`)
+        }
+ 
+        getGameDocuments()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }else{
         document.title = currentGameData?.name
         var link = document.querySelector("link[rel~='icon']");
