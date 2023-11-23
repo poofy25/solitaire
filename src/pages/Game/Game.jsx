@@ -49,7 +49,7 @@ useEffect(()=>{
             sessionStorage.setItem('games', JSON.stringify(localGames))
             localStorage.setItem('games', JSON.stringify(localGames))
             console.log(window.location.href)
-            navigateTo(`/game/${(JSON.parse(localStorage.getItem("games"))?.[language]?.[params.id]?.name).toLowerCase()}`)
+            navigateTo(`/game/${(JSON.parse(localStorage.getItem("games"))?.[language]?.[params.id]?.name)}`)
         }
  
         getGameDocuments()
